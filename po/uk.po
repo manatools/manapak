@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manapak 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-21 19:07+0100\n"
+"POT-Creation-Date: 2026-11-21 22:10+0100\n"
 "PO-Revision-Date: 2026-11-21 19:38+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
@@ -372,3 +372,15 @@ msgstr "Так"
 #: manapak/ui.py:447 manapak/ui.py:455
 msgid "manapak error"
 msgstr "Помилка manapak"
+
+#: share/applications/org.mageia.manapak.desktop:3
+msgid "ManaTools manapak"
+msgstr ""
+
+#: share/applications/org.mageia.manapak.desktop:5
+msgid "Manage Flatpak application updates"
+msgstr ""
+
+#: share/applications/org.mageia.manapak.desktop:11
+msgid "flatpak;updates;packages;manatools;"
+msgstr ""
