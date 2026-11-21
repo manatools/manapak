@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=ManaTools manapak
+Name[it]=ManaTools manapak
+Comment=Manage Flatpak application updates
+Comment[it]=Gestisce gli aggiornamenti delle applicazioni Flatpak
+Exec=manapak
+Icon=manapak
+Terminal=false
+Categories=Settings;PackageManager;
+Keywords=flatpak;updates;packages;manatools;
+StartupWMClass=org.mageia.manapak

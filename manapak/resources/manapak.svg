@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  SPDX-License-Identifier: CC0-1.0
+  Original manapak icon artwork created for this project.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <title>manapak</title>
+  <defs>
+    <linearGradient id="magic" x1="18" y1="18" x2="106" y2="110" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#8c4dff"/>
+      <stop offset="1" stop-color="#48208f"/>
+    </linearGradient>
+  </defs>
+  <rect x="10" y="10" width="108" height="108" rx="24" fill="url(#magic)"/>
+  <path d="M28 66v25c0 5 4 9 9 9h42c5 0 9-4 9-9V66L58 53Z" fill="#6fd9e7" opacity=".92"/>
+  <path d="m28 66 30-13 30 13-30 14Z" fill="#b9f0f4"/>
+  <path d="M58 80v20M43 72v13M73 72v13" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" opacity=".82"/>
+  <path d="M35 76 80 31" fill="none" stroke="#ffca58" stroke-width="13" stroke-linecap="round"/>
+  <path d="M59 32h23v23" fill="none" stroke="#fff3bd" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="m82 31 8-8m-8 8 8 8" fill="none" stroke="#fff3bd" stroke-width="7" stroke-linecap="round"/>
+  <path d="m98 26 3.5 9L111 39l-9.5 4L98 52l-3.5-9L85 39l9.5-4Z" fill="#ffe28a"/>
+  <path d="m90 66 2 5 5 2-5 2-2 5-2-5-5-2 5-2Z" fill="#ffffff" opacity=".9"/>
+  <path d="m26 30 1.8 4.2L32 36l-4.2 1.8L26 42l-1.8-4.2L20 36l4.2-1.8Z" fill="#bdeff4"/>
+</svg>

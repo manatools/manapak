@@ -1,0 +1,19 @@
+manapak artwork and third-party notices
+=======================================
+
+The manapak SVG icon and its hicolor PNG renderings are original artwork
+created for this project and are released under CC0-1.0. The package,
+wand, upward arrow and magical sparkle motifs are original, generic visual
+elements intended to communicate Mageia/ManaTools and software updates.
+
+SPDX identifier: CC0-1.0
+
+The manapak icon is not the Flatpak project logo and does not claim Flatpak
+branding or endorsement.
+
+The Flatpak name and any references to the Flatpak project belong to their
+respective owners. The Flatpak Python API is consumed through the
+`gi.repository.Flatpak` introspection bindings.
+
+Application source code is licensed under GPL-3.0-or-later as stated in
+LICENSE and in the project metadata.

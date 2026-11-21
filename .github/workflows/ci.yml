@@ -1,0 +1,62 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes \
+            gettext \
+            gir1.2-flatpak-1.0 \
+            libflatpak-dev \
+            desktop-file-utils \
+            python3-gi
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install pytest poetry-core python-manatools
+
+      - name: Validate desktop and translations
+        run: |
+          desktop-file-validate share/applications/org.mageia.manapak.desktop
+          msgfmt --check --output-file=/tmp/manapak-it.mo po/it.po
+
+      - name: Test
+        run: pytest -q
+
+      - name: Build package
+        run: |
+          python -c 'from poetry.core.masonry.api import build_wheel, build_sdist; build_wheel("dist"); build_sdist("dist")'
+
+      - name: Verify archives
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from zipfile import ZipFile
+          required = (
+              "NOTICE",
+              "share/applications/org.mageia.manapak.desktop",
+              "share/icons/hicolor/scalable/apps/manapak.svg",
+          )
+          with ZipFile(next(Path("dist").glob("*.whl"))) as archive:
+              names = set(archive.namelist())
+          missing = [path for path in required if path not in names]
+          if missing:
+              raise SystemExit(f"Missing wheel assets: {missing}")
+          PY

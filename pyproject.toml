@@ -1,0 +1,45 @@
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "manapak"
+version = "1.0.0"
+description = "Flatpak updates manager using the Flatpak Python API and manatools.aui"
+authors = ["Angelo Naselli <anaselli@linux.it>"]
+license = "GPL-3.0-or-later"
+readme = "README.md"
+keywords = ["manatools", "flatpak", "updates", "gtk", "qt", "ncurses"]
+packages = [{ include = "manapak" }]
+include = [
+    { path = "share/locale/*/*/manapak.mo", format = ["sdist", "wheel"] },
+    { path = "manapak/resources/*.svg", format = ["sdist", "wheel"] },
+    { path = "share/applications/*.desktop", format = ["sdist", "wheel"] },
+    { path = "share/icons/hicolor/scalable/apps/*.svg", format = ["sdist", "wheel"] },
+    { path = "share/icons/hicolor/*/apps/*.png", format = ["sdist", "wheel"] },
+    { path = "NOTICE", format = ["sdist", "wheel"] },
+]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+python-manatools = "*"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+
+[tool.poetry.scripts]
+manapak = "manapak.app:main"
+
+[tool.poetry.data]
+"share/applications" = ["share/applications/org.mageia.manapak.desktop"]
+"share/icons/hicolor/scalable/apps" = ["share/icons/hicolor/scalable/apps/manapak.svg"]
+"share/icons/hicolor/16x16/apps" = ["share/icons/hicolor/16x16/apps/manapak.png"]
+"share/icons/hicolor/24x24/apps" = ["share/icons/hicolor/24x24/apps/manapak.png"]
+"share/icons/hicolor/32x32/apps" = ["share/icons/hicolor/32x32/apps/manapak.png"]
+"share/icons/hicolor/48x48/apps" = ["share/icons/hicolor/48x48/apps/manapak.png"]
+"share/icons/hicolor/64x64/apps" = ["share/icons/hicolor/64x64/apps/manapak.png"]
+"share/icons/hicolor/128x128/apps" = ["share/icons/hicolor/128x128/apps/manapak.png"]
+"share/icons/hicolor/256x256/apps" = ["share/icons/hicolor/256x256/apps/manapak.png"]

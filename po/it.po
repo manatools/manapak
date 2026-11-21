@@ -1,0 +1,365 @@
+# Italian translations for manapak package.
+# Copyright (C) 2026 THE manapak'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the manapak package.
+# Automatically generated, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: manapak 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-21 11:00+0100\n"
+"PO-Revision-Date: 2026-11-21 10:55+0100\n"
+"Last-Translator: Angelo Naselli <anaselli@linux.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: manapak/app.py:95
+msgid "Developers"
+msgstr "Sviluppatori"
+
+#: manapak/app.py:101
+msgid "Project Links"
+msgstr "Collegamenti al progetto"
+
+#: manapak/app.py:106 manapak/ui.py:364
+msgid "Runtime"
+msgstr "Ambiente di esecuzione"
+
+#: manapak/app.py:125
+msgid "Enable console logging."
+msgstr "Abilita il log sulla console."
+
+#: manapak/app.py:126
+msgid "Write log entries to PATHNAME instead of the console."
+msgstr "Scrive le voci di log in PATHNAME invece che sulla console."
+
+#: manapak/app.py:127
+msgid "Enable debug logging."
+msgstr "Abilita il log di debug."
+
+#: manapak/app.py:128
+msgid "Use Flatpak user installation instead of system installation."
+msgstr "Usa l'installazione Flatpak utente invece di quella di sistema."
+
+#: manapak/app.py:153
+msgid "Unable to start manapak"
+msgstr "Impossibile avviare manapak"
+
+#: manapak/app.py:155
+#, python-format
+msgid ""
+"The application could not be started safely.\n"
+"Details: %s"
+msgstr ""
+"Impossibile avviare l'applicazione in modo sicuro.\n"
+"Dettagli: %s"
+
+#: manapak/helpinfo.py:18
+msgid "Go to index"
+msgstr "Vai all'indice"
+
+#: manapak/helpinfo.py:22 manapak/helpinfo.py:38
+msgid "Checking for updates"
+msgstr "Controllo degli aggiornamenti"
+
+#: manapak/helpinfo.py:23 manapak/helpinfo.py:47
+msgid "Updating applications"
+msgstr "Aggiornamento delle applicazioni"
+
+#: manapak/helpinfo.py:24 manapak/helpinfo.py:57 manapak/ui.py:30
+msgid "Application information"
+msgstr "Informazioni sull'applicazione"
+
+#: manapak/helpinfo.py:25 manapak/helpinfo.py:66
+msgid "Privileges and installation scopes"
+msgstr "Privilegi e ambiti di installazione"
+
+#: manapak/helpinfo.py:32
+msgid ""
+"manapak inspects and updates Flatpak applications through "
+"gi.repository.Flatpak. It does not execute Flatpak CLI commands."
+msgstr ""
+"manapak ispeziona e aggiorna le applicazioni Flatpak tramite "
+"gi.repository.Flatpak. Non esegue comandi CLI Flatpak."
+
+#: manapak/helpinfo.py:40
+msgid ""
+"At startup manapak loads installed applications and asks Flatpak for "
+"available updates. Use Check Updates to refresh the catalog. The View "
+"selector switches between updates and all installed apps."
+msgstr ""
+"All'avvio manapak carica le applicazioni installate e chiede a Flatpak quali "
+"aggiornamenti sono disponibili. Usa Controlla aggiornamenti per aggiornare "
+"il catalogo. Il selettore Vista consente di passare dagli aggiornamenti a "
+"tutte le app installate."
+
+#: manapak/helpinfo.py:49
+msgid ""
+"Update All applies every available application update. A single application "
+"can be updated from the table context menu. Progress and status messages are "
+"handled in the background without blocking the main interface."
+msgstr ""
+"Aggiorna tutto applica tutti gli aggiornamenti disponibili. Una singola "
+"applicazione può essere aggiornata dal menu contestuale della tabella. "
+"Avanzamento e messaggi di stato vengono gestiti in background senza bloccare "
+"l'interfaccia principale."
+
+#: manapak/helpinfo.py:59
+msgid ""
+"Open an application's context menu and choose Information to inspect its "
+"origin, architecture, branch, runtime, SDK, base application, installed "
+"commit and available commit."
+msgstr ""
+"Apri il menu contestuale di un'applicazione e scegli Informazioni per "
+"verificarne origine, architettura, ramo, runtime, SDK, applicazione base, "
+"commit installato e commit disponibile."
+
+#: manapak/helpinfo.py:68
+msgid ""
+"User and system Flatpak installations are inspected. System changes are "
+"authorized by the operating system's Flatpak and Polkit integration. manapak "
+"never invokes sudo or pkexec."
+msgstr ""
+"Vengono ispezionate le installazioni Flatpak utente e di sistema. Le "
+"modifiche di sistema sono autorizzate tramite l'integrazione Flatpak e "
+"Polkit del sistema operativo. manapak non invoca mai sudo o pkexec."
+
+#: manapak/__init__.py:21 manapak/ui.py:61
+msgid "manapak - Flatpak updates"
+msgstr "manapak - Aggiornamenti Flatpak"
+
+#: manapak/__init__.py:23
+msgid ""
+"Desktop tool to check and apply Flatpak updates via the Flatpak Python API."
+msgstr ""
+"Strumento desktop per controllare e applicare gli aggiornamenti Flatpak "
+"tramite l'API Python di Flatpak."
+
+#: manapak/__init__.py:24
+msgid "Manage Flatpak updates through the Flatpak Python API."
+msgstr "Gestisce gli aggiornamenti Flatpak tramite l'API Python di Flatpak."
+
+#: manapak/ui.py:46 manapak/ui.py:158
+msgid "&Close"
+msgstr "&Chiudi"
+
+#: manapak/ui.py:47
+msgid "Close only the information dialog and return to manapak."
+msgstr "Chiude solo la finestra delle informazioni e torna a manapak."
+
+#: manapak/ui.py:101
+msgid "View"
+msgstr "Vista"
+
+#: manapak/ui.py:107
+msgid "Only updates"
+msgstr "Solo aggiornamenti"
+
+#: manapak/ui.py:108 manapak/ui.py:412
+msgid "All applications"
+msgstr "Tutte le applicazioni"
+
+#: manapak/ui.py:111
+msgid ""
+"Choose whether to show only applications with updates or the full installed "
+"catalog."
+msgstr ""
+"Scegli se mostrare solo le applicazioni aggiornabili o tutto il catalogo "
+"installato."
+
+#: manapak/ui.py:117
+msgid "App ID"
+msgstr "ID applicazione"
+
+#: manapak/ui.py:118
+msgid "Current Version"
+msgstr "Versione attuale"
+
+#: manapak/ui.py:119 manapak/ui.py:361
+msgid "Branch"
+msgstr "Ramo"
+
+#: manapak/ui.py:120 manapak/ui.py:369
+msgid "Update available"
+msgstr "Aggiornamento disponibile"
+
+#: manapak/ui.py:132 manapak/ui.py:336 manapak/ui.py:431
+msgid "Idle"
+msgstr "Inattivo"
+
+#: manapak/ui.py:133
+msgid "Operation progress"
+msgstr "Avanzamento operazione"
+
+#: manapak/ui.py:140
+msgid "Operation log"
+msgstr "Registro operazioni"
+
+#: manapak/ui.py:149
+msgid "&Help"
+msgstr "&Guida"
+
+#: manapak/ui.py:150
+msgid "Open usage, update and privilege documentation."
+msgstr "Apre la documentazione sull'uso, gli aggiornamenti e i privilegi."
+
+#: manapak/ui.py:151
+msgid "&About"
+msgstr "&Informazioni"
+
+#: manapak/ui.py:152
+msgid "Show application version, license and project information."
+msgstr "Mostra versione, licenza e informazioni sul progetto."
+
+#: manapak/ui.py:153
+msgid "Check &Updates"
+msgstr "Controlla &aggiornamenti"
+
+#: manapak/ui.py:154
+msgid "Refresh the update catalog from Flatpak remotes."
+msgstr "Aggiorna il catalogo degli aggiornamenti dai remote Flatpak."
+
+#: manapak/ui.py:155
+msgid "Update &All"
+msgstr "Aggiorna &tutto"
+
+#: manapak/ui.py:156
+msgid "Update all applications that are currently marked as updatable."
+msgstr ""
+"Aggiorna tutte le applicazioni attualmente contrassegnate come aggiornabili."
+
+#: manapak/ui.py:159
+msgid "Close the application. Background threads are stopped gracefully."
+msgstr "Chiude l'applicazione arrestando correttamente i thread in background."
+
+#: manapak/ui.py:169
+msgid "Application started. Loading Flatpak updates..."
+msgstr "Applicazione avviata. Caricamento degli aggiornamenti Flatpak..."
+
+#: manapak/ui.py:185
+msgid "Unable to open Help. See the application log for details."
+msgstr ""
+"Impossibile aprire la Guida. Consulta il registro dell'applicazione per i "
+"dettagli."
+
+#: manapak/ui.py:195
+msgid "Unable to open About. See the application log for details."
+msgstr ""
+"Impossibile aprire Informazioni. Consulta il registro dell'applicazione per "
+"i dettagli."
+
+#: manapak/ui.py:200
+msgid "No updates available"
+msgstr "Nessun aggiornamento disponibile"
+
+#: manapak/ui.py:200
+msgid "There are no applications with updates available right now."
+msgstr "Al momento non ci sono applicazioni con aggiornamenti disponibili."
+
+#: manapak/ui.py:223
+msgid "No update for selected app"
+msgstr "Nessun aggiornamento per l'app selezionata"
+
+#: manapak/ui.py:223
+msgid "The selected application has no available update."
+msgstr "L'applicazione selezionata non ha aggiornamenti disponibili."
+
+#: manapak/ui.py:278
+#, python-format
+msgid "Available updates: %(count)d"
+msgstr "Aggiornamenti disponibili: %(count)d"
+
+#: manapak/ui.py:286
+#, python-format
+msgid "Updating %(app)s..."
+msgstr "Aggiornamento di %(app)s..."
+
+#: manapak/ui.py:293
+#, python-format
+msgid "Update completed for %(app)s."
+msgstr "Aggiornamento completato per %(app)s."
+
+#: manapak/ui.py:294
+msgid "Refreshing updates list..."
+msgstr "Aggiornamento dell'elenco..."
+
+#: manapak/ui.py:318
+msgid "No updates available."
+msgstr "Nessun aggiornamento disponibile."
+
+#: manapak/ui.py:320
+msgid "Unknown error"
+msgstr "Errore sconosciuto"
+
+#: manapak/ui.py:321
+#, python-format
+msgid "Error: %(error)s"
+msgstr "Errore: %(error)s"
+
+#: manapak/ui.py:322
+msgid "Error"
+msgstr "Errore"
+
+#: manapak/ui.py:323
+msgid "Flatpak error"
+msgstr "Errore Flatpak"
+
+#: manapak/ui.py:336
+msgid "Ready"
+msgstr "Pronto"
+
+#: manapak/ui.py:347
+msgid "Update"
+msgstr "Aggiorna"
+
+#: manapak/ui.py:348
+msgid "Information"
+msgstr "Informazioni"
+
+#: manapak/ui.py:359
+msgid "Application"
+msgstr "Applicazione"
+
+#: manapak/ui.py:360
+msgid "Installed version"
+msgstr "Versione installata"
+
+#: manapak/ui.py:362
+msgid "Architecture"
+msgstr "Architettura"
+
+#: manapak/ui.py:363
+msgid "Origin"
+msgstr "Origine"
+
+#: manapak/ui.py:365
+msgid "SDK"
+msgstr "SDK"
+
+#: manapak/ui.py:366
+msgid "Base app"
+msgstr "Applicazione base"
+
+#: manapak/ui.py:367
+msgid "Installed commit"
+msgstr "Commit installato"
+
+#: manapak/ui.py:368
+msgid "Available commit"
+msgstr "Commit disponibile"
+
+#: manapak/ui.py:369 manapak/ui.py:402
+msgid "Yes"
+msgstr "Sì"
+
+#: manapak/ui.py:369 manapak/ui.py:402
+msgid "No"
+msgstr "No"
+
+#: manapak/ui.py:437 manapak/ui.py:445
+msgid "manapak error"
+msgstr "Errore di manapak"
