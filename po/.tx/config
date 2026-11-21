@@ -3,6 +3,7 @@ host = https://www.transifex.com
 
 [o:MageiaLinux:p:mageia:r:manapak]
 file_filter = <lang>.po
+resource_name = Manapak
 source_file = manapak.pot
 source_lang = en
 type = PO
