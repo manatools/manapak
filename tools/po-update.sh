@@ -10,15 +10,19 @@ fi
 
 cd "$(readlink -f "$(dirname "$0")/..")"
 
-VERSION="0.1.0"
 DOMAIN="manapak"
+VERSION="$(/bin/sed --quiet --expression='s/^version[[:space:]]*=[[:space:]]*"\(.*\)".*$/\1/p' pyproject.toml | head -n 1)"
+if test -z "$VERSION"; then
+	echo "Unable to read the project version from pyproject.toml"
+	exit 1
+fi
 
 POT_DIR="$PWD/po"
 test -d "$POT_DIR"
 
 POT_FILE="$POT_DIR/$DOMAIN.pot"
 PY_SOURCES="$(find manapak -type f -name '*.py' | sort)"
-DESKTOP_FILE="share/applications/.org.mageia.manapak.desktop"
+DESKTOP_FILE="share/applications/org.mageia.manapak.desktop"
 
 if test -z "$PY_SOURCES"; then
 	echo "No Python sources found under manapak/"

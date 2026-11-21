@@ -39,19 +39,23 @@ python -c 'from poetry.core.masonry.api import build_wheel, build_sdist; build_w
 
 ## Translations
 
-Extract/update translatable strings:
+Regenerate `po/manapak.pot` from the Python sources and the desktop entry, then
+merge it into every language catalog:
 
 ```bash
-xgettext --language=Python --keyword=_ --keyword=N_ \
-  --output=po/manapak.pot \
-  manapak/*.py main.py ui.py flatpak_api.py
+tools/po-update.sh
 ```
 
-Create or update a language catalog:
+Pass a language code to merge only that catalog:
+
+```bash
+tools/po-update.sh it
+```
+
+Create a catalog for a new language from the template:
 
 ```bash
 msginit --locale=it --input=po/manapak.pot --output-file=po/it.po
-msgmerge --update po/it.po po/manapak.pot
 ```
 
 Compile locally and launch using the local catalog:
