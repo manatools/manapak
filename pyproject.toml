@@ -14,6 +14,7 @@ packages = [{ include = "manapak" }]
 include = [
     { path = "share/locale/*/*/manapak.mo", format = ["sdist", "wheel"] },
     { path = "manapak/resources/*.svg", format = ["sdist", "wheel"] },
+    { path = "share/dnfdragora/plugins/*.plugin", format = ["sdist", "wheel"] },
     { path = "share/applications/*.desktop", format = ["sdist", "wheel"] },
     { path = "share/icons/hicolor/scalable/apps/*.svg", format = ["sdist", "wheel"] },
     { path = "share/icons/hicolor/*/apps/*.png", format = ["sdist", "wheel"] },
@@ -35,6 +36,7 @@ manapak = "manapak.app:main"
 
 [tool.poetry.data]
 "share/applications" = ["share/applications/org.mageia.manapak.desktop"]
+"share/dnfdragora/plugins" = ["share/dnfdragora/plugins/manapak.plugin"]
 "share/icons/hicolor/scalable/apps" = ["share/icons/hicolor/scalable/apps/manapak.svg"]
 "share/icons/hicolor/16x16/apps" = ["share/icons/hicolor/16x16/apps/manapak.png"]
 "share/icons/hicolor/24x24/apps" = ["share/icons/hicolor/24x24/apps/manapak.png"]

@@ -30,7 +30,7 @@ recorded in [NOTICE](NOTICE).
 Runtime requirements:
 
 - Python 3.9 or newer
-- `python-manatools` with a GTK, Qt or ncurses backend
+- `python-manatools` >= 0.99.4 with a GTK, Qt or ncurses backend
 - PyGObject
 - Flatpak GObject Introspection typelib (`gir1.2-flatpak-1.0` or the distribution equivalent)
 

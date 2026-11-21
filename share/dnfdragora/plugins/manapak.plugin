@@ -1,0 +1,17 @@
+[plugin]
+# ManaPak plugin for dnfdragora
+# Configuration file for Flatpak updates management plugin
+
+name=ManaPak
+description=Manage Flatpak updates and applications
+author=Angelo Naselli
+
+# Main dialog class for the plugin (re-exported from manapak.ui.ManapakDialog)
+module=manapak.dnfdragora_plugin
+dialog_class=ManapakDialog
+
+# Optional updater module for getting update counts
+updater_module=manapak.dnfdragora_plugin_updater
+
+# Icon name (should exist in icon theme)
+icon=manapak
