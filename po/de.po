@@ -1,0 +1,372 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the manapak package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+# Translators:
+# Yuri Chornoivan <yurchor@ukr.net>, 2026
+# Peter Grun, 2026
+# Ettore Atalan <atalanttore@googlemail.com>, 2026
+# psyca, 2026
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: manapak 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-21 22:10+0100\n"
+"PO-Revision-Date: 2026-11-21 16:57+0000\n"
+"Last-Translator: psyca, 2026\n"
+"Language-Team: German (https://app.transifex.com/MageiaLinux/teams/9361/"
+"de/)\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: manapak/__init__.py:31 manapak/ui.py:71
+msgid "manapak - Flatpak updates"
+msgstr "manapak - Flatpak Aktualisierungen"
+
+#: manapak/__init__.py:33
+msgid ""
+"Desktop tool to check and apply Flatpak updates via the Flatpak Python API."
+msgstr ""
+"Desktop-Anwendung zum Überprüfen und Anwenden von Flatpak Aktualisierungen "
+"über die Flatpak-Python-API."
+
+#: manapak/__init__.py:34
+msgid "Manage Flatpak updates through the Flatpak Python API."
+msgstr "Verwalte Flatpak Aktualisierungen über die Flatpak-Python-API."
+
+#: manapak/app.py:105
+msgid "Developers"
+msgstr "Entwickler"
+
+#: manapak/app.py:111
+msgid "Project Links"
+msgstr "Projekt-Links"
+
+#: manapak/app.py:116 manapak/ui.py:374
+msgid "Runtime"
+msgstr "Laufzeit"
+
+#: manapak/app.py:135
+msgid "Enable console logging."
+msgstr ""
+
+#: manapak/app.py:136
+msgid "Write log entries to PATHNAME instead of the console."
+msgstr "Das Protokoll nach PFADNAME schreiben, anstatt in die Konsole."
+
+#: manapak/app.py:137
+msgid "Enable debug logging."
+msgstr ""
+
+#: manapak/app.py:138
+msgid "Use Flatpak user installation instead of system installation."
+msgstr ""
+"Verwende die Flatpak Benutzerinstallation anstelle der Systeminstallation."
+
+#: manapak/app.py:163
+msgid "Unable to start manapak"
+msgstr "Manapak kann nicht gestartet werden"
+
+#: manapak/app.py:165
+#, python-format
+msgid ""
+"The application could not be started safely.\n"
+"Details: %s"
+msgstr ""
+"Die Anwendung konnte nicht sicher gestartet werden.\n"
+"Details: %s"
+
+#: manapak/helpinfo.py:28
+msgid "Go to index"
+msgstr "Gehe zu Index"
+
+#: manapak/helpinfo.py:32 manapak/helpinfo.py:48
+msgid "Checking for updates"
+msgstr "Prüfe nach Aktualisierungen"
+
+#: manapak/helpinfo.py:33 manapak/helpinfo.py:57
+msgid "Updating applications"
+msgstr "Aktualisiere Anwendungen"
+
+#: manapak/helpinfo.py:34 manapak/helpinfo.py:67 manapak/ui.py:40
+msgid "Application information"
+msgstr "Anwendungsinformationen"
+
+#: manapak/helpinfo.py:35 manapak/helpinfo.py:76
+msgid "Privileges and installation scopes"
+msgstr ""
+
+#: manapak/helpinfo.py:42
+msgid ""
+"manapak inspects and updates Flatpak applications through "
+"gi.repository.Flatpak. It does not execute Flatpak CLI commands."
+msgstr ""
+
+#: manapak/helpinfo.py:50
+msgid ""
+"At startup manapak loads installed applications and asks Flatpak for "
+"available updates. Use Check Updates to refresh the catalog. The View "
+"selector switches between updates and all installed apps."
+msgstr ""
+"Beim Start lädt manapak installierte Anwendungen und prüft nach verfügbaren "
+"Aktualisierungen. Nutzen Sie Prüfe Aktualisierungen um den Katalog zu "
+"erneuern. Die Ansicht kann zwischen Aktualisierungen und installierten "
+"Anwendungen gewechselt werden."
+
+#: manapak/helpinfo.py:59
+msgid ""
+"Update All applies every available application update. A single application "
+"can be updated from the table context menu. Progress and status messages are "
+"handled in the background without blocking the main interface."
+msgstr ""
+
+#: manapak/helpinfo.py:69
+msgid ""
+"Open an application's context menu and choose Information to inspect its "
+"origin, architecture, branch, runtime, SDK, base application, installed "
+"commit and available commit."
+msgstr ""
+
+#: manapak/helpinfo.py:78
+msgid ""
+"User and system Flatpak installations are inspected. System changes are "
+"authorized by the operating system's Flatpak and Polkit integration. manapak "
+"never invokes sudo or pkexec."
+msgstr ""
+
+#: manapak/ui.py:56 manapak/ui.py:168
+msgid "&Close"
+msgstr "S&chließen"
+
+#: manapak/ui.py:57
+msgid "Close only the information dialog and return to manapak."
+msgstr "Schließe nur die Informationsanzeige und kehre zu manapak zurück."
+
+#: manapak/ui.py:111
+msgid "View"
+msgstr "Ansicht"
+
+#: manapak/ui.py:117
+msgid "Only updates"
+msgstr "Nur Aktualisierungen"
+
+#: manapak/ui.py:118 manapak/ui.py:422
+msgid "All applications"
+msgstr "Alle Anwendungen"
+
+#: manapak/ui.py:121
+msgid ""
+"Choose whether to show only applications with updates or the full installed "
+"catalog."
+msgstr ""
+"Wählen Sie ob nur Anwendungen mit verfügbaren Aktualisierungen angezeigt "
+"werden sollen oder der vollständige installierte Katalog."
+
+#: manapak/ui.py:127
+msgid "App ID"
+msgstr "Anwendungs-ID"
+
+#: manapak/ui.py:128
+msgid "Current Version"
+msgstr "Aktuelle Version"
+
+#: manapak/ui.py:129 manapak/ui.py:371
+msgid "Branch"
+msgstr "Zweig"
+
+#: manapak/ui.py:130 manapak/ui.py:379
+msgid "Update available"
+msgstr "Aktualisierung verfügbar"
+
+#: manapak/ui.py:142 manapak/ui.py:346 manapak/ui.py:441
+msgid "Idle"
+msgstr "Leerlauf"
+
+#: manapak/ui.py:143
+msgid "Operation progress"
+msgstr ""
+
+#: manapak/ui.py:150
+msgid "Operation log"
+msgstr ""
+
+#: manapak/ui.py:159
+msgid "&Help"
+msgstr "&Hilfe"
+
+#: manapak/ui.py:160
+msgid "Open usage, update and privilege documentation."
+msgstr ""
+
+#: manapak/ui.py:161
+msgid "&About"
+msgstr "&Über"
+
+#: manapak/ui.py:162
+msgid "Show application version, license and project information."
+msgstr "Zeige Anwendungsversion, Lizenz und Projektinformation."
+
+#: manapak/ui.py:163
+msgid "Check &Updates"
+msgstr "Prüfe Akt&ualisierungen"
+
+#: manapak/ui.py:164
+msgid "Refresh the update catalog from Flatpak remotes."
+msgstr ""
+
+#: manapak/ui.py:165
+msgid "Update &All"
+msgstr "&Alles aktualisieren"
+
+#: manapak/ui.py:166
+msgid "Update all applications that are currently marked as updatable."
+msgstr "Aktualisiere alle Anwendungen welche als aktualisierbar markiert sind."
+
+#: manapak/ui.py:169
+msgid "Close the application. Background threads are stopped gracefully."
+msgstr ""
+"Schließe die Anwendung. Hintergrundprozesse wurden ordnungsgemäß gestoppt."
+
+#: manapak/ui.py:179
+msgid "Application started. Loading Flatpak updates..."
+msgstr "Anwendung gestartet. Lade Flatpak Aktualisierungen..."
+
+#: manapak/ui.py:195
+msgid "Unable to open Help. See the application log for details."
+msgstr ""
+"Hilfe kann nicht geöffnet werden. Siehe Anwendungsprotokoll für Einzelheiten."
+
+#: manapak/ui.py:205
+msgid "Unable to open About. See the application log for details."
+msgstr ""
+"Über kann nicht geöffnet werden. Siehe Anwendungsprotokoll für Einzelheiten."
+
+#: manapak/ui.py:210
+msgid "No updates available"
+msgstr "Keine Aktualisierungen verfügbar"
+
+#: manapak/ui.py:210
+msgid "There are no applications with updates available right now."
+msgstr "Zur Zeit gibt es keine Anwendungen mit verfügbaren Aktualisierungen."
+
+#: manapak/ui.py:233
+msgid "No update for selected app"
+msgstr "Keine Aktualisierung für ausgewählte Anwendung"
+
+#: manapak/ui.py:233
+msgid "The selected application has no available update."
+msgstr "Die ausgewählte Anwendung hat keine verfügbare Aktualisierungen."
+
+#: manapak/ui.py:288
+#, python-format
+msgid "Available updates: %(count)d"
+msgstr "Verfügbare Aktualisierungen: %(count)d"
+
+#: manapak/ui.py:296
+#, python-format
+msgid "Updating %(app)s..."
+msgstr "Aktualisiere %(app)s..."
+
+#: manapak/ui.py:303
+#, python-format
+msgid "Update completed for %(app)s."
+msgstr "Aktualisierung durchgeführt für %(app)s."
+
+#: manapak/ui.py:304
+msgid "Refreshing updates list..."
+msgstr "Erneuere Aktualisierungsliste"
+
+#: manapak/ui.py:328
+msgid "No updates available."
+msgstr "Keine Aktualisierungen verfügbar."
+
+#: manapak/ui.py:330
+msgid "Unknown error"
+msgstr "Unbekannter Fehler"
+
+#: manapak/ui.py:331
+#, python-format
+msgid "Error: %(error)s"
+msgstr "Fehler: %(error)s"
+
+#: manapak/ui.py:332
+msgid "Error"
+msgstr "Fehler"
+
+#: manapak/ui.py:333
+msgid "Flatpak error"
+msgstr "Flatpak Fehler"
+
+#: manapak/ui.py:346
+msgid "Ready"
+msgstr "Bereit"
+
+#: manapak/ui.py:357
+msgid "Update"
+msgstr "Aktualisieren"
+
+#: manapak/ui.py:358
+msgid "Information"
+msgstr "Information"
+
+#: manapak/ui.py:369
+msgid "Application"
+msgstr "Anwendung"
+
+#: manapak/ui.py:370
+msgid "Installed version"
+msgstr "Installierte Version"
+
+#: manapak/ui.py:372
+msgid "Architecture"
+msgstr "Architektur"
+
+#: manapak/ui.py:373
+msgid "Origin"
+msgstr "Herkunft"
+
+#: manapak/ui.py:375
+msgid "SDK"
+msgstr "SDK"
+
+#: manapak/ui.py:376
+msgid "Base app"
+msgstr ""
+
+#: manapak/ui.py:377
+msgid "Installed commit"
+msgstr ""
+
+#: manapak/ui.py:378
+msgid "Available commit"
+msgstr ""
+
+#: manapak/ui.py:379 manapak/ui.py:412
+msgid "No"
+msgstr "Nein"
+
+#: manapak/ui.py:379 manapak/ui.py:412
+msgid "Yes"
+msgstr "Ja"
+
+#: manapak/ui.py:447 manapak/ui.py:455
+msgid "manapak error"
+msgstr "manapak Fehler"
+
+#: share/applications/org.mageia.manapak.desktop:3
+msgid "ManaTools manapak"
+msgstr "ManaTools manapak"
+
+#: share/applications/org.mageia.manapak.desktop:5
+msgid "Manage Flatpak application updates"
+msgstr "Verwalte Flatpak Anwendungsaktualisierungen"
+
+#: share/applications/org.mageia.manapak.desktop:11
+msgid "flatpak;updates;packages;manatools;"
+msgstr ""
