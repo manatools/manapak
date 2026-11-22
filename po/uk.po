@@ -9,17 +9,17 @@ msgstr ""
 "Project-Id-Version: manapak 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-11-21 22:10+0100\n"
-"PO-Revision-Date: 2026-11-21 19:38+0200\n"
+"PO-Revision-Date: 2026-11-22 10:33+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != "
-"11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % "
-"100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || "
-"(n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 "
+"? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > "
+"14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100"
+" >=11 && n % 100 <=14 )) ? 2: 3);\n"
 "X-Generator: Lokalize 25.12.1\n"
 
 #: manapak/__init__.py:31 manapak/ui.py:71
@@ -375,12 +375,13 @@ msgstr "Помилка manapak"
 
 #: share/applications/org.mageia.manapak.desktop:3
 msgid "ManaTools manapak"
-msgstr ""
+msgstr "ManaTools manapak"
 
 #: share/applications/org.mageia.manapak.desktop:5
 msgid "Manage Flatpak application updates"
-msgstr ""
+msgstr "Керування оновленнями програм у Flatpak"
 
 #: share/applications/org.mageia.manapak.desktop:11
 msgid "flatpak;updates;packages;manatools;"
 msgstr ""
+"flatpak;updates;packages;manatools;флетпак;оновлення;пакунки;манатулс;"
