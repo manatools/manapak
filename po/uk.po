@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manapak 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-21 22:10+0100\n"
+"POT-Creation-Date: 2026-11-28 10:34+0100\n"
 "PO-Revision-Date: 2026-11-22 10:33+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
@@ -16,10 +16,10 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 "
-"? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > "
-"14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100"
-" >=11 && n % 100 <=14 )) ? 2: 3);\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != "
+"11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % "
+"100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || "
+"(n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
 "X-Generator: Lokalize 25.12.1\n"
 
 #: manapak/__init__.py:31 manapak/ui.py:71
@@ -47,7 +47,7 @@ msgstr "Розробники"
 msgid "Project Links"
 msgstr "Посилання на проєкт"
 
-#: manapak/app.py:116 manapak/ui.py:374
+#: manapak/app.py:116 manapak/ui.py:377
 msgid "Runtime"
 msgstr "Динамічний"
 
@@ -153,7 +153,7 @@ msgstr ""
 "інтеграції Flatpak з Polkit в операційній системі. manapak ніколи не "
 "викликає sudo або pkexec."
 
-#: manapak/ui.py:56 manapak/ui.py:168
+#: manapak/ui.py:56 manapak/ui.py:171
 msgid "&Close"
 msgstr "За&крити"
 
@@ -169,7 +169,7 @@ msgstr "Перегляд"
 msgid "Only updates"
 msgstr "Лише оновлення"
 
-#: manapak/ui.py:118 manapak/ui.py:422
+#: manapak/ui.py:118 manapak/ui.py:433
 msgid "All applications"
 msgstr "Усі програми"
 
@@ -186,190 +186,202 @@ msgid "App ID"
 msgstr "Ід. програми"
 
 #: manapak/ui.py:128
+msgid "Ref type"
+msgstr ""
+
+#: manapak/ui.py:129
 msgid "Current Version"
 msgstr "Поточна версія"
 
-#: manapak/ui.py:129 manapak/ui.py:371
+#: manapak/ui.py:130 manapak/ui.py:374
 msgid "Branch"
 msgstr "Гілка"
 
-#: manapak/ui.py:130 manapak/ui.py:379
+#: manapak/ui.py:131
+msgid "Scope"
+msgstr ""
+
+#: manapak/ui.py:132
+msgid "Partial"
+msgstr ""
+
+#: manapak/ui.py:133 manapak/ui.py:382
 msgid "Update available"
 msgstr "Доступне оновлення"
 
-#: manapak/ui.py:142 manapak/ui.py:346 manapak/ui.py:441
+#: manapak/ui.py:145 manapak/ui.py:349 manapak/ui.py:452
 msgid "Idle"
 msgstr "Бездіяльність"
 
-#: manapak/ui.py:143
+#: manapak/ui.py:146
 msgid "Operation progress"
 msgstr "Поступ дії"
 
-#: manapak/ui.py:150
+#: manapak/ui.py:153
 msgid "Operation log"
 msgstr "Журнал дії"
 
-#: manapak/ui.py:159
+#: manapak/ui.py:162
 msgid "&Help"
 msgstr "&Довідка"
 
-#: manapak/ui.py:160
+#: manapak/ui.py:163
 msgid "Open usage, update and privilege documentation."
 msgstr "Відкрити документацію щодо використання, оновлення та прав доступу."
 
-#: manapak/ui.py:161
+#: manapak/ui.py:164
 msgid "&About"
 msgstr "Пр&о програму"
 
-#: manapak/ui.py:162
+#: manapak/ui.py:165
 msgid "Show application version, license and project information."
 msgstr "Показати версію програми, ліцензію та відомості про проєкт."
 
-#: manapak/ui.py:163
+#: manapak/ui.py:166
 msgid "Check &Updates"
 msgstr "Шукати &оновлення"
 
-#: manapak/ui.py:164
+#: manapak/ui.py:167
 msgid "Refresh the update catalog from Flatpak remotes."
 msgstr "Освіжити каталог оновлень із віддалених сховищ Flatpak."
 
-#: manapak/ui.py:165
+#: manapak/ui.py:168
 msgid "Update &All"
 msgstr "Оновити &усе"
 
-#: manapak/ui.py:166
+#: manapak/ui.py:169
 msgid "Update all applications that are currently marked as updatable."
 msgstr "Оновити усі програми, які зараз позначено як придатні до оновлення."
 
-#: manapak/ui.py:169
+#: manapak/ui.py:172
 msgid "Close the application. Background threads are stopped gracefully."
 msgstr ""
 "Завершити роботу програми. Фонові потоки обробки буде завершено у штатному "
 "режимі."
 
-#: manapak/ui.py:179
+#: manapak/ui.py:182
 msgid "Application started. Loading Flatpak updates..."
 msgstr "Програму запущено. Завантаження оновлень Flatpak..."
 
-#: manapak/ui.py:195
+#: manapak/ui.py:198
 msgid "Unable to open Help. See the application log for details."
 msgstr "Не вдалося відкрити довідку. Докладніше про це у журналі програми."
 
-#: manapak/ui.py:205
+#: manapak/ui.py:208
 msgid "Unable to open About. See the application log for details."
 msgstr ""
 "Не вдалося відкрити вікно «Про програму». Докладніше про це у журналі "
 "програми."
 
-#: manapak/ui.py:210
+#: manapak/ui.py:213
 msgid "No updates available"
 msgstr "Немає доступних оновлень"
 
-#: manapak/ui.py:210
+#: manapak/ui.py:213
 msgid "There are no applications with updates available right now."
 msgstr "Зараз програм з доступними оновленнями немає."
 
-#: manapak/ui.py:233
+#: manapak/ui.py:236
 msgid "No update for selected app"
 msgstr "Немає оновлень для вибраної програми"
 
-#: manapak/ui.py:233
+#: manapak/ui.py:236
 msgid "The selected application has no available update."
 msgstr "У вибраної програми немає доступних оновлень."
 
-#: manapak/ui.py:288
+#: manapak/ui.py:291
 #, python-format
 msgid "Available updates: %(count)d"
 msgstr "Доступні оновлення: %(count)d"
 
-#: manapak/ui.py:296
+#: manapak/ui.py:299
 #, python-format
 msgid "Updating %(app)s..."
 msgstr "Оновлення %(app)s..."
 
-#: manapak/ui.py:303
+#: manapak/ui.py:306
 #, python-format
 msgid "Update completed for %(app)s."
 msgstr "Оновлення завершено для %(app)s."
 
-#: manapak/ui.py:304
+#: manapak/ui.py:307
 msgid "Refreshing updates list..."
 msgstr "Освіження списку оновлень..."
 
-#: manapak/ui.py:328
+#: manapak/ui.py:331
 msgid "No updates available."
 msgstr "Немає доступних оновлень."
 
-#: manapak/ui.py:330
+#: manapak/ui.py:333
 msgid "Unknown error"
 msgstr "Невідома помилка"
 
-#: manapak/ui.py:331
+#: manapak/ui.py:334
 #, python-format
 msgid "Error: %(error)s"
 msgstr "Помилка: %(error)s"
 
-#: manapak/ui.py:332
+#: manapak/ui.py:335
 msgid "Error"
 msgstr "Помилка"
 
-#: manapak/ui.py:333
+#: manapak/ui.py:336
 msgid "Flatpak error"
 msgstr "Помилка Flatpak"
 
-#: manapak/ui.py:346
+#: manapak/ui.py:349
 msgid "Ready"
 msgstr "Готово"
 
-#: manapak/ui.py:357
+#: manapak/ui.py:360
 msgid "Update"
 msgstr "Оновлення"
 
-#: manapak/ui.py:358
+#: manapak/ui.py:361
 msgid "Information"
 msgstr "ВІдомості"
 
-#: manapak/ui.py:369
+#: manapak/ui.py:372
 msgid "Application"
 msgstr "Програма"
 
-#: manapak/ui.py:370
+#: manapak/ui.py:373
 msgid "Installed version"
 msgstr "Встановлена версія"
 
-#: manapak/ui.py:372
+#: manapak/ui.py:375
 msgid "Architecture"
 msgstr "Архітектура"
 
-#: manapak/ui.py:373
+#: manapak/ui.py:376
 msgid "Origin"
 msgstr "Походження"
 
-#: manapak/ui.py:375
+#: manapak/ui.py:378
 msgid "SDK"
 msgstr "SDK"
 
-#: manapak/ui.py:376
+#: manapak/ui.py:379
 msgid "Base app"
 msgstr "Базова програма"
 
-#: manapak/ui.py:377
+#: manapak/ui.py:380
 msgid "Installed commit"
 msgstr "Встановлений внесок"
 
-#: manapak/ui.py:378
+#: manapak/ui.py:381
 msgid "Available commit"
 msgstr "Доступний внесок"
 
-#: manapak/ui.py:379 manapak/ui.py:412
+#: manapak/ui.py:382 manapak/ui.py:400 manapak/ui.py:423
 msgid "No"
 msgstr "Ні"
 
-#: manapak/ui.py:379 manapak/ui.py:412
+#: manapak/ui.py:382 manapak/ui.py:400 manapak/ui.py:423
 msgid "Yes"
 msgstr "Так"
 
-#: manapak/ui.py:447 manapak/ui.py:455
+#: manapak/ui.py:458 manapak/ui.py:466
 msgid "manapak error"
 msgstr "Помилка manapak"
 
@@ -383,5 +395,4 @@ msgstr "Керування оновленнями програм у Flatpak"
 
 #: share/applications/org.mageia.manapak.desktop:11
 msgid "flatpak;updates;packages;manatools;"
-msgstr ""
-"flatpak;updates;packages;manatools;флетпак;оновлення;пакунки;манатулс;"
+msgstr "flatpak;updates;packages;manatools;флетпак;оновлення;пакунки;манатулс;"

@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manapak 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-21 22:10+0100\n"
+"POT-Creation-Date: 2026-11-28 10:34+0100\n"
 "PO-Revision-Date: 2026-11-21 16:57+0000\n"
 "Last-Translator: Dimitrios Glentadakis <dglent@free.fr>, 2026\n"
 "Language-Team: Greek (https://app.transifex.com/MageiaLinux/teams/9361/el/)\n"
@@ -45,7 +45,7 @@ msgstr "Δημιουργοί"
 msgid "Project Links"
 msgstr "Σύνδεσμοι έργου"
 
-#: manapak/app.py:116 manapak/ui.py:374
+#: manapak/app.py:116 manapak/ui.py:377
 msgid "Runtime"
 msgstr "Περιβάλλον εκτέλεσης"
 
@@ -155,7 +155,7 @@ msgstr ""
 "Polkit στο λειτουργικό σύστημα. Το manapak λειτουργεί χωρίς να καλεί τις "
 "εντολές sudo ή pkexec."
 
-#: manapak/ui.py:56 manapak/ui.py:168
+#: manapak/ui.py:56 manapak/ui.py:171
 msgid "&Close"
 msgstr "&Κλείσιμο"
 
@@ -171,7 +171,7 @@ msgstr "Προβολή"
 msgid "Only updates"
 msgstr "Μόνο ενημερώσεις"
 
-#: manapak/ui.py:118 manapak/ui.py:422
+#: manapak/ui.py:118 manapak/ui.py:433
 msgid "All applications"
 msgstr "Όλες οι εφαρμογές"
 
@@ -188,193 +188,205 @@ msgid "App ID"
 msgstr "Αναγνωριστικό εφαρμογής"
 
 #: manapak/ui.py:128
+msgid "Ref type"
+msgstr ""
+
+#: manapak/ui.py:129
 msgid "Current Version"
 msgstr "Τρέχουσα έκδοση"
 
-#: manapak/ui.py:129 manapak/ui.py:371
+#: manapak/ui.py:130 manapak/ui.py:374
 msgid "Branch"
 msgstr "Κλάδος"
 
-#: manapak/ui.py:130 manapak/ui.py:379
+#: manapak/ui.py:131
+msgid "Scope"
+msgstr ""
+
+#: manapak/ui.py:132
+msgid "Partial"
+msgstr ""
+
+#: manapak/ui.py:133 manapak/ui.py:382
 msgid "Update available"
 msgstr "Διαθέσιμη ενημέρωση"
 
-#: manapak/ui.py:142 manapak/ui.py:346 manapak/ui.py:441
+#: manapak/ui.py:145 manapak/ui.py:349 manapak/ui.py:452
 msgid "Idle"
 msgstr "Σε αδράνεια"
 
-#: manapak/ui.py:143
+#: manapak/ui.py:146
 msgid "Operation progress"
 msgstr "Πρόοδος λειτουργίας"
 
-#: manapak/ui.py:150
+#: manapak/ui.py:153
 msgid "Operation log"
 msgstr "Καταγραφή λειτουργιών"
 
-#: manapak/ui.py:159
+#: manapak/ui.py:162
 msgid "&Help"
 msgstr "&Βοήθεια"
 
-#: manapak/ui.py:160
+#: manapak/ui.py:163
 msgid "Open usage, update and privilege documentation."
 msgstr "Άνοιγμα της τεκμηρίωσης για τη χρήση, τις ενημερώσεις και τα προνόμια."
 
-#: manapak/ui.py:161
+#: manapak/ui.py:164
 msgid "&About"
 msgstr "&Σχετικά"
 
-#: manapak/ui.py:162
+#: manapak/ui.py:165
 msgid "Show application version, license and project information."
 msgstr ""
 "Εμφάνιση της έκδοσης της εφαρμογής, της άδειας χρήσης και πληροφοριών για το "
 "έργο."
 
-#: manapak/ui.py:163
+#: manapak/ui.py:166
 msgid "Check &Updates"
 msgstr "Έλεγχος &ενημερώσεων"
 
-#: manapak/ui.py:164
+#: manapak/ui.py:167
 msgid "Refresh the update catalog from Flatpak remotes."
 msgstr ""
 "Ανανέωση του καταλόγου ενημερώσεων από τα απομακρυσμένα αποθετήρια Flatpak."
 
-#: manapak/ui.py:165
+#: manapak/ui.py:168
 msgid "Update &All"
 msgstr "Ενημέρωση ό&λων"
 
-#: manapak/ui.py:166
+#: manapak/ui.py:169
 msgid "Update all applications that are currently marked as updatable."
 msgstr "Ενημέρωση όλων των εφαρμογών που εμφανίζονται με διαθέσιμη ενημέρωση."
 
-#: manapak/ui.py:169
+#: manapak/ui.py:172
 msgid "Close the application. Background threads are stopped gracefully."
 msgstr "Κλείσιμο της εφαρμογής. Τα νήματα παρασκηνίου τερματίζονται ομαλά."
 
-#: manapak/ui.py:179
+#: manapak/ui.py:182
 msgid "Application started. Loading Flatpak updates..."
 msgstr "Η εφαρμογή ξεκίνησε. Φόρτωση των ενημερώσεων Flatpak..."
 
-#: manapak/ui.py:195
+#: manapak/ui.py:198
 msgid "Unable to open Help. See the application log for details."
 msgstr ""
 "Αδυναμία ανοίγματος της βοήθειας. Δείτε την καταγραφή της εφαρμογής για "
 "λεπτομέρειες."
 
-#: manapak/ui.py:205
+#: manapak/ui.py:208
 msgid "Unable to open About. See the application log for details."
 msgstr ""
 "Αδυναμία ανοίγματος του διαλόγου «Σχετικά». Δείτε την καταγραφή της "
 "εφαρμογής για λεπτομέρειες."
 
-#: manapak/ui.py:210
+#: manapak/ui.py:213
 msgid "No updates available"
 msgstr "Δεν υπάρχουν διαθέσιμες ενημερώσεις"
 
-#: manapak/ui.py:210
+#: manapak/ui.py:213
 msgid "There are no applications with updates available right now."
 msgstr "Αυτή τη στιγμή δεν υπάρχουν εφαρμογές με διαθέσιμες ενημερώσεις."
 
-#: manapak/ui.py:233
+#: manapak/ui.py:236
 msgid "No update for selected app"
 msgstr "Καμία ενημέρωση για την επιλεγμένη εφαρμογή"
 
-#: manapak/ui.py:233
+#: manapak/ui.py:236
 msgid "The selected application has no available update."
 msgstr "Δεν υπάρχει διαθέσιμη ενημέρωση για την επιλεγμένη εφαρμογή."
 
-#: manapak/ui.py:288
+#: manapak/ui.py:291
 #, python-format
 msgid "Available updates: %(count)d"
 msgstr "Διαθέσιμες ενημερώσεις: %(count)d"
 
-#: manapak/ui.py:296
+#: manapak/ui.py:299
 #, python-format
 msgid "Updating %(app)s..."
 msgstr "Ενημέρωση της εφαρμογής %(app)s..."
 
-#: manapak/ui.py:303
+#: manapak/ui.py:306
 #, python-format
 msgid "Update completed for %(app)s."
 msgstr "Ολοκληρώθηκε η ενημέρωση της εφαρμογής %(app)s."
 
-#: manapak/ui.py:304
+#: manapak/ui.py:307
 msgid "Refreshing updates list..."
 msgstr "Ανανέωση του καταλόγου ενημερώσεων..."
 
-#: manapak/ui.py:328
+#: manapak/ui.py:331
 msgid "No updates available."
 msgstr "Δεν υπάρχουν διαθέσιμες ενημερώσεις."
 
-#: manapak/ui.py:330
+#: manapak/ui.py:333
 msgid "Unknown error"
 msgstr "Άγνωστο σφάλμα"
 
-#: manapak/ui.py:331
+#: manapak/ui.py:334
 #, python-format
 msgid "Error: %(error)s"
 msgstr "Σφάλμα: %(error)s"
 
-#: manapak/ui.py:332
+#: manapak/ui.py:335
 msgid "Error"
 msgstr "Σφάλμα"
 
-#: manapak/ui.py:333
+#: manapak/ui.py:336
 msgid "Flatpak error"
 msgstr "Σφάλμα Flatpak"
 
-#: manapak/ui.py:346
+#: manapak/ui.py:349
 msgid "Ready"
 msgstr "Έτοιμο"
 
-#: manapak/ui.py:357
+#: manapak/ui.py:360
 msgid "Update"
 msgstr "Ενημέρωση"
 
-#: manapak/ui.py:358
+#: manapak/ui.py:361
 msgid "Information"
 msgstr "Πληροφορίες"
 
-#: manapak/ui.py:369
+#: manapak/ui.py:372
 msgid "Application"
 msgstr "Εφαρμογή"
 
-#: manapak/ui.py:370
+#: manapak/ui.py:373
 msgid "Installed version"
 msgstr "Εγκατεστημένη έκδοση"
 
-#: manapak/ui.py:372
+#: manapak/ui.py:375
 msgid "Architecture"
 msgstr "Αρχιτεκτονική"
 
-#: manapak/ui.py:373
+#: manapak/ui.py:376
 msgid "Origin"
 msgstr "Προέλευση"
 
-#: manapak/ui.py:375
+#: manapak/ui.py:378
 msgid "SDK"
 msgstr "SDK"
 
-#: manapak/ui.py:376
+#: manapak/ui.py:379
 msgid "Base app"
 msgstr "Εφαρμογή βάσης"
 
-#: manapak/ui.py:377
+#: manapak/ui.py:380
 msgid "Installed commit"
 msgstr "Εγκατεστημένη υποβολή"
 
-#: manapak/ui.py:378
+#: manapak/ui.py:381
 msgid "Available commit"
 msgstr "Διαθέσιμη υποβολή"
 
-#: manapak/ui.py:379 manapak/ui.py:412
+#: manapak/ui.py:382 manapak/ui.py:400 manapak/ui.py:423
 msgid "No"
 msgstr "Όχι"
 
-#: manapak/ui.py:379 manapak/ui.py:412
+#: manapak/ui.py:382 manapak/ui.py:400 manapak/ui.py:423
 msgid "Yes"
 msgstr "Ναι"
 
-#: manapak/ui.py:447 manapak/ui.py:455
+#: manapak/ui.py:458 manapak/ui.py:466
 msgid "manapak error"
 msgstr "Σφάλμα του manapak"
 

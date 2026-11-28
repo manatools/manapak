@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manapak 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-21 22:10+0100\n"
+"POT-Creation-Date: 2026-11-28 10:34+0100\n"
 "PO-Revision-Date: 2026-11-21 16:57+0000\n"
 "Last-Translator: psyca, 2026\n"
 "Language-Team: German (https://app.transifex.com/MageiaLinux/teams/9361/"
@@ -48,7 +48,7 @@ msgstr "Entwickler"
 msgid "Project Links"
 msgstr "Projekt-Links"
 
-#: manapak/app.py:116 manapak/ui.py:374
+#: manapak/app.py:116 manapak/ui.py:377
 msgid "Runtime"
 msgstr "Laufzeit"
 
@@ -140,7 +140,7 @@ msgid ""
 "never invokes sudo or pkexec."
 msgstr ""
 
-#: manapak/ui.py:56 manapak/ui.py:168
+#: manapak/ui.py:56 manapak/ui.py:171
 msgid "&Close"
 msgstr "S&chließen"
 
@@ -156,7 +156,7 @@ msgstr "Ansicht"
 msgid "Only updates"
 msgstr "Nur Aktualisierungen"
 
-#: manapak/ui.py:118 manapak/ui.py:422
+#: manapak/ui.py:118 manapak/ui.py:433
 msgid "All applications"
 msgstr "Alle Anwendungen"
 
@@ -173,189 +173,201 @@ msgid "App ID"
 msgstr "Anwendungs-ID"
 
 #: manapak/ui.py:128
+msgid "Ref type"
+msgstr ""
+
+#: manapak/ui.py:129
 msgid "Current Version"
 msgstr "Aktuelle Version"
 
-#: manapak/ui.py:129 manapak/ui.py:371
+#: manapak/ui.py:130 manapak/ui.py:374
 msgid "Branch"
 msgstr "Zweig"
 
-#: manapak/ui.py:130 manapak/ui.py:379
+#: manapak/ui.py:131
+msgid "Scope"
+msgstr ""
+
+#: manapak/ui.py:132
+msgid "Partial"
+msgstr ""
+
+#: manapak/ui.py:133 manapak/ui.py:382
 msgid "Update available"
 msgstr "Aktualisierung verfügbar"
 
-#: manapak/ui.py:142 manapak/ui.py:346 manapak/ui.py:441
+#: manapak/ui.py:145 manapak/ui.py:349 manapak/ui.py:452
 msgid "Idle"
 msgstr "Leerlauf"
 
-#: manapak/ui.py:143
+#: manapak/ui.py:146
 msgid "Operation progress"
 msgstr ""
 
-#: manapak/ui.py:150
+#: manapak/ui.py:153
 msgid "Operation log"
 msgstr ""
 
-#: manapak/ui.py:159
+#: manapak/ui.py:162
 msgid "&Help"
 msgstr "&Hilfe"
 
-#: manapak/ui.py:160
+#: manapak/ui.py:163
 msgid "Open usage, update and privilege documentation."
 msgstr ""
 
-#: manapak/ui.py:161
+#: manapak/ui.py:164
 msgid "&About"
 msgstr "&Über"
 
-#: manapak/ui.py:162
+#: manapak/ui.py:165
 msgid "Show application version, license and project information."
 msgstr "Zeige Anwendungsversion, Lizenz und Projektinformation."
 
-#: manapak/ui.py:163
+#: manapak/ui.py:166
 msgid "Check &Updates"
 msgstr "Prüfe Akt&ualisierungen"
 
-#: manapak/ui.py:164
+#: manapak/ui.py:167
 msgid "Refresh the update catalog from Flatpak remotes."
 msgstr ""
 
-#: manapak/ui.py:165
+#: manapak/ui.py:168
 msgid "Update &All"
 msgstr "&Alles aktualisieren"
 
-#: manapak/ui.py:166
+#: manapak/ui.py:169
 msgid "Update all applications that are currently marked as updatable."
 msgstr "Aktualisiere alle Anwendungen welche als aktualisierbar markiert sind."
 
-#: manapak/ui.py:169
+#: manapak/ui.py:172
 msgid "Close the application. Background threads are stopped gracefully."
 msgstr ""
 "Schließe die Anwendung. Hintergrundprozesse wurden ordnungsgemäß gestoppt."
 
-#: manapak/ui.py:179
+#: manapak/ui.py:182
 msgid "Application started. Loading Flatpak updates..."
 msgstr "Anwendung gestartet. Lade Flatpak Aktualisierungen..."
 
-#: manapak/ui.py:195
+#: manapak/ui.py:198
 msgid "Unable to open Help. See the application log for details."
 msgstr ""
 "Hilfe kann nicht geöffnet werden. Siehe Anwendungsprotokoll für Einzelheiten."
 
-#: manapak/ui.py:205
+#: manapak/ui.py:208
 msgid "Unable to open About. See the application log for details."
 msgstr ""
 "Über kann nicht geöffnet werden. Siehe Anwendungsprotokoll für Einzelheiten."
 
-#: manapak/ui.py:210
+#: manapak/ui.py:213
 msgid "No updates available"
 msgstr "Keine Aktualisierungen verfügbar"
 
-#: manapak/ui.py:210
+#: manapak/ui.py:213
 msgid "There are no applications with updates available right now."
 msgstr "Zur Zeit gibt es keine Anwendungen mit verfügbaren Aktualisierungen."
 
-#: manapak/ui.py:233
+#: manapak/ui.py:236
 msgid "No update for selected app"
 msgstr "Keine Aktualisierung für ausgewählte Anwendung"
 
-#: manapak/ui.py:233
+#: manapak/ui.py:236
 msgid "The selected application has no available update."
 msgstr "Die ausgewählte Anwendung hat keine verfügbare Aktualisierungen."
 
-#: manapak/ui.py:288
+#: manapak/ui.py:291
 #, python-format
 msgid "Available updates: %(count)d"
 msgstr "Verfügbare Aktualisierungen: %(count)d"
 
-#: manapak/ui.py:296
+#: manapak/ui.py:299
 #, python-format
 msgid "Updating %(app)s..."
 msgstr "Aktualisiere %(app)s..."
 
-#: manapak/ui.py:303
+#: manapak/ui.py:306
 #, python-format
 msgid "Update completed for %(app)s."
 msgstr "Aktualisierung durchgeführt für %(app)s."
 
-#: manapak/ui.py:304
+#: manapak/ui.py:307
 msgid "Refreshing updates list..."
 msgstr "Erneuere Aktualisierungsliste"
 
-#: manapak/ui.py:328
+#: manapak/ui.py:331
 msgid "No updates available."
 msgstr "Keine Aktualisierungen verfügbar."
 
-#: manapak/ui.py:330
+#: manapak/ui.py:333
 msgid "Unknown error"
 msgstr "Unbekannter Fehler"
 
-#: manapak/ui.py:331
+#: manapak/ui.py:334
 #, python-format
 msgid "Error: %(error)s"
 msgstr "Fehler: %(error)s"
 
-#: manapak/ui.py:332
+#: manapak/ui.py:335
 msgid "Error"
 msgstr "Fehler"
 
-#: manapak/ui.py:333
+#: manapak/ui.py:336
 msgid "Flatpak error"
 msgstr "Flatpak Fehler"
 
-#: manapak/ui.py:346
+#: manapak/ui.py:349
 msgid "Ready"
 msgstr "Bereit"
 
-#: manapak/ui.py:357
+#: manapak/ui.py:360
 msgid "Update"
 msgstr "Aktualisieren"
 
-#: manapak/ui.py:358
+#: manapak/ui.py:361
 msgid "Information"
 msgstr "Information"
 
-#: manapak/ui.py:369
+#: manapak/ui.py:372
 msgid "Application"
 msgstr "Anwendung"
 
-#: manapak/ui.py:370
+#: manapak/ui.py:373
 msgid "Installed version"
 msgstr "Installierte Version"
 
-#: manapak/ui.py:372
+#: manapak/ui.py:375
 msgid "Architecture"
 msgstr "Architektur"
 
-#: manapak/ui.py:373
+#: manapak/ui.py:376
 msgid "Origin"
 msgstr "Herkunft"
 
-#: manapak/ui.py:375
+#: manapak/ui.py:378
 msgid "SDK"
 msgstr "SDK"
 
-#: manapak/ui.py:376
+#: manapak/ui.py:379
 msgid "Base app"
 msgstr ""
 
-#: manapak/ui.py:377
+#: manapak/ui.py:380
 msgid "Installed commit"
 msgstr ""
 
-#: manapak/ui.py:378
+#: manapak/ui.py:381
 msgid "Available commit"
 msgstr ""
 
-#: manapak/ui.py:379 manapak/ui.py:412
+#: manapak/ui.py:382 manapak/ui.py:400 manapak/ui.py:423
 msgid "No"
 msgstr "Nein"
 
-#: manapak/ui.py:379 manapak/ui.py:412
+#: manapak/ui.py:382 manapak/ui.py:400 manapak/ui.py:423
 msgid "Yes"
 msgstr "Ja"
 
-#: manapak/ui.py:447 manapak/ui.py:455
+#: manapak/ui.py:458 manapak/ui.py:466
 msgid "manapak error"
 msgstr "manapak Fehler"
 
