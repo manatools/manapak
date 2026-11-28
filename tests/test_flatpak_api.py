@@ -19,9 +19,10 @@ from manapak.flatpak_api import FlatpakAPIError, FlatpakManager
 
 
 class FakeRef:
-    def __init__(self, app_id: str, kind: int = 0):
+    def __init__(self, app_id: str, kind: int = 0, partial: bool = False):
         self._app_id = app_id
         self._kind = kind
+        self._partial = partial
 
     def get_name(self):
         return self._app_id
@@ -43,6 +44,9 @@ class FakeRef:
 
     def get_commit(self):
         return "installed-commit"
+
+    def get_is_partial(self):
+        return self._partial
 
     def load_metadata(self, cancellable=None):
         return SimpleNamespace(
@@ -368,3 +372,38 @@ def test_check_updates_refreshes_remote_metadata_when_cache_is_stale(monkeypatch
     manager.check_updates()
 
     assert installation.refreshed == ["flathub", "flathub", "flathub", "flathub"]
+
+
+def test_check_updates_exposes_runtime_partial_and_scope(monkeypatch):
+    locale_ref = FakeRef("org.gnome.Platform.Locale", kind=1, partial=True)
+    gl_ref = FakeRef("org.freedesktop.Platform.GL.default", kind=1)
+    installation = FakeInstallation([locale_ref, gl_ref], remotes=["flathub"])
+
+    class FakeFlatpak:
+        RefKind = SimpleNamespace(APP=0, RUNTIME=1)
+
+        class Installation:
+            @staticmethod
+            def new_system(cancellable=None):
+                return installation
+
+            @staticmethod
+            def new_user(cancellable=None):
+                return FakeInstallation([])
+
+    import manapak.flatpak_api as flatpak_api
+
+    monkeypatch.setattr(flatpak_api, "Flatpak", FakeFlatpak)
+    monkeypatch.setattr(flatpak_api, "GLib", SimpleNamespace(Error=RuntimeError))
+    monkeypatch.setattr(flatpak_api, "_FLATPAK_IMPORT_ERROR", None)
+
+    manager = FlatpakManager(use_system_installation=True)
+    updates = manager.check_updates()
+
+    locale = next(item for item in updates if item.app_id == "org.gnome.Platform.Locale")
+    gl = next(item for item in updates if item.app_id == "org.freedesktop.Platform.GL.default")
+    assert locale.ref_type == "runtime"
+    assert locale.partial is True
+    assert locale.scope == "system"
+    assert gl.ref_type == "runtime"
+    assert gl.partial is False

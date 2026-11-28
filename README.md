@@ -10,6 +10,10 @@
 - operate in the background without blocking the main UI thread
 - show Flatpak errors through dialogs if any
 
+The update table identifies each entry as an application or runtime, reports
+whether the installed ref is partial when Flatpak exposes that state, and shows
+its system or user installation scope.
+
 When checking for updates, `manapak` refreshes remote metadata in the background
 before querying updates. This can add a short delay but avoids stale results.
 

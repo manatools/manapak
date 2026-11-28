@@ -47,6 +47,9 @@ class FlatpakAppInfo:
     branch: str
     arch: str
     origin: str
+    ref_type: str = "app"
+    partial: bool = False
+    scope: str = "unknown"
 
 
 @dataclass(frozen=True)
@@ -76,6 +79,7 @@ class FlatpakManager:
         self._last_remote_refresh_at = 0.0
         self._remote_refresh_interval = 300.0
         self._remote_refresh_lock = threading.Lock()
+        self._installation_scopes = {}
 
     @staticmethod
     def ensure_available() -> None:
@@ -110,6 +114,7 @@ class FlatpakManager:
             if self._is_privilege_error(exc):
                 raise FlatpakAPIError(self._describe_privilege_error(scope)) from exc
             raise FlatpakAPIError(f"Cannot open Flatpak {scope} installation: {exc.message}") from exc
+        self._installation_scopes[id(self._installation)] = "system" if self.use_system_installation else "user"
         return self._installation
 
     @staticmethod
@@ -143,7 +148,7 @@ class FlatpakManager:
             ("system", self._safe_new_installation, "new_system"),
             ("user", self._safe_new_installation, "new_user"),
         ]
-        for _, factory, method_name in factory_pairs:
+        for scope, factory, method_name in factory_pairs:
             try:
                 installation = factory(method_name)
             except Exception:
@@ -151,6 +156,7 @@ class FlatpakManager:
                 continue
             if installation is not None:
                 installations.append(installation)
+                self._installation_scopes[id(installation)] = scope
         if not installations:
             installations.append(self.get_installation())
         self._installations = tuple(installations)
@@ -189,11 +195,13 @@ class FlatpakManager:
         refs = []
         for installation in self.get_installations():
             try:
-                refs.extend(installation.list_installed_refs(None))
+                installed_refs = installation.list_installed_refs(None)
             except TypeError:
-                refs.extend(installation.list_installed_refs())
+                installed_refs = installation.list_installed_refs()
             except GLib.Error as exc:
                 raise FlatpakAPIError(f"Unable to list installed refs: {exc.message}") from exc
+            scope = self._installation_scopes.get(id(installation), "unknown")
+            refs.extend((ref, scope) for ref in installed_refs)
         return self._to_app_list(refs)
 
     def check_updates(self) -> List[FlatpakAppInfo]:
@@ -201,11 +209,13 @@ class FlatpakManager:
         refs = []
         for installation in self.get_installations():
             try:
-                refs.extend(installation.list_installed_refs_for_update(None))
+                update_refs = installation.list_installed_refs_for_update(None)
             except TypeError:
-                refs.extend(installation.list_installed_refs_for_update())
+                update_refs = installation.list_installed_refs_for_update()
             except GLib.Error as exc:
                 raise FlatpakAPIError(f"Unable to check updates: {exc.message}") from exc
+            scope = self._installation_scopes.get(id(installation), "unknown")
+            refs.extend((ref, scope) for ref in update_refs)
         return self._to_app_list(refs, include_runtimes=True)
 
     def refresh_remote_metadata_if_stale(self, force: bool = False) -> bool:
@@ -414,17 +424,22 @@ class FlatpakManager:
     def _to_app_list(self, refs, include_runtimes: bool = False) -> List[FlatpakAppInfo]:
         apps: List[FlatpakAppInfo] = []
         seen = set()
-        for ref in refs:
+        for entry in refs:
+            if isinstance(entry, tuple) and len(entry) == 2:
+                ref, scope = entry
+            else:
+                ref, scope = entry, "unknown"
             if include_runtimes:
                 if not self._ref_kind_is_supported(ref):
                     continue
             elif not self._ref_kind_is_app(ref):
                 continue
             app_id = self._ref_name(ref)
-            key = self._ref_key(ref, app_id)
+            key = self._ref_key(ref, app_id, scope)
             if key in seen:
                 continue
             seen.add(key)
+            ref_type = "runtime" if self._ref_kind_is_runtime(ref) else "app"
             apps.append(
                 FlatpakAppInfo(
                     app_id=app_id,
@@ -432,16 +447,19 @@ class FlatpakManager:
                     branch=self._safe_call(ref, "get_branch", ""),
                     arch=self._safe_call(ref, "get_arch", ""),
                     origin=self._safe_call(ref, "get_origin", ""),
+                    ref_type=ref_type,
+                    partial=self._ref_is_partial(ref),
+                    scope=scope,
                 )
             )
         return sorted(apps, key=lambda item: item.app_id.lower())
 
     @staticmethod
-    def _ref_key(ref, app_id: str) -> str:
+    def _ref_key(ref, app_id: str, scope: str = "unknown") -> str:
         return (
             f"{FlatpakManager._ref_kind(ref)}|{app_id}|"
             f"{FlatpakManager._safe_call(ref, 'get_branch', '')}|"
-            f"{FlatpakManager._safe_call(ref, 'get_arch', '')}"
+            f"{FlatpakManager._safe_call(ref, 'get_arch', '')}|{scope}"
         )
 
     @staticmethod
@@ -464,6 +482,21 @@ class FlatpakManager:
     @staticmethod
     def _ref_kind_is_supported(ref) -> bool:
         return FlatpakManager._ref_kind_is_app(ref) or FlatpakManager._ref_kind_is_runtime(ref)
+
+    @staticmethod
+    def _ref_is_partial(ref) -> bool:
+        for method_name in ("get_is_partial", "is_partial", "get_partial"):
+            method = getattr(ref, method_name, None)
+            if callable(method):
+                try:
+                    return bool(method())
+                except (TypeError, AttributeError):
+                    continue
+        for attribute_name in ("is_partial", "partial"):
+            value = getattr(ref, attribute_name, None)
+            if isinstance(value, bool):
+                return value
+        return False
 
     @staticmethod
     def _ref_name(ref) -> str:

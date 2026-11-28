@@ -125,8 +125,11 @@ class ManapakDialog(basedialog.BaseDialog):
         self.factory.createVSpacing(sources_box, 4)
         header = MUI.YTableHeader()
         header.addColumn(_("App ID"))
+        header.addColumn(_("Ref type"))
         header.addColumn(_("Current Version"))
         header.addColumn(_("Branch"))
+        header.addColumn(_("Scope"))
+        header.addColumn(_("Partial"))
         header.addColumn(_("Update available"))
         self._apps_table = self.factory.createTable(sources_box, header, multiSelection=False)
         self._apps_table.setNotify(True)
@@ -388,7 +391,15 @@ class ManapakDialog(basedialog.BaseDialog):
         self._apps_table.deleteAllItems()
         for app in rows:
             row = MUI.YTableItem()
-            row.addCells(app.app_id, app.current_version, app.branch, self._updatable_text(app.app_id))
+            row.addCells(
+                app.app_id,
+                app.ref_type,
+                app.current_version,
+                app.branch,
+                app.scope,
+                _("Yes") if app.partial else _("No"),
+                self._updatable_text(app.app_id),
+            )
             self._apps_table.addItem(row)
 
     def _selected_app_ids(self) -> List[str]:
