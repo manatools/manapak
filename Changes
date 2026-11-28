@@ -1,5 +1,3 @@
 ManaPak
 =====================
 1.0.0 First release
-1.0.1 Fix update detection for runtimes and locale extensions; refresh remote metadata before update checks.
-1.0.2 Show app/runtime type, partial state and installation scope; restore dnfdragora updater compatibility and include runtimes.
