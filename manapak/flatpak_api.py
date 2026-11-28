@@ -16,6 +16,7 @@ import configparser
 from dataclasses import dataclass
 import logging
 import threading
+import time
 from typing import List
 
 try:
@@ -72,6 +73,9 @@ class FlatpakManager:
         self._installations = None
         self._cancellables = set()
         self._cancellables_lock = threading.Lock()
+        self._last_remote_refresh_at = 0.0
+        self._remote_refresh_interval = 300.0
+        self._remote_refresh_lock = threading.Lock()
 
     @staticmethod
     def ensure_available() -> None:
@@ -193,6 +197,7 @@ class FlatpakManager:
         return self._to_app_list(refs)
 
     def check_updates(self) -> List[FlatpakAppInfo]:
+        self.refresh_remote_metadata_if_stale()
         refs = []
         for installation in self.get_installations():
             try:
@@ -201,7 +206,56 @@ class FlatpakManager:
                 refs.extend(installation.list_installed_refs_for_update())
             except GLib.Error as exc:
                 raise FlatpakAPIError(f"Unable to check updates: {exc.message}") from exc
-        return self._to_app_list(refs)
+        return self._to_app_list(refs, include_runtimes=True)
+
+    def refresh_remote_metadata_if_stale(self, force: bool = False) -> bool:
+        now = time.monotonic()
+        with self._remote_refresh_lock:
+            if not force and (now - self._last_remote_refresh_at) < self._remote_refresh_interval:
+                return False
+            self._last_remote_refresh_at = now
+
+        refreshed = False
+        for installation in self.get_installations():
+            remotes = self._list_installation_remotes(installation)
+            if not remotes:
+                continue
+            updater = getattr(installation, "update_remote_sync", None)
+            if not callable(updater):
+                continue
+            for remote_name in remotes:
+                if not remote_name:
+                    continue
+                try:
+                    updater(remote_name, None)
+                except TypeError:
+                    try:
+                        updater(remote_name)
+                    except (GLib.Error, TypeError) as exc:
+                        logger.warning("Unable to refresh Flatpak remote metadata for %s: %s", remote_name, exc)
+                        continue
+                except GLib.Error as exc:
+                    logger.warning("Unable to refresh Flatpak remote metadata for %s: %s", remote_name, exc.message)
+                    continue
+                refreshed = True
+        return refreshed
+
+    @staticmethod
+    def _list_installation_remotes(installation) -> List[str]:
+        try:
+            remotes = installation.list_remotes()
+        except AttributeError:
+            logger.debug("Flatpak installation lacks list_remotes()")
+            return []
+        except GLib.Error as exc:
+            logger.warning("Unable to list Flatpak remotes: %s", exc.message)
+            return []
+        names = []
+        for remote in remotes or []:
+            name = getattr(remote, "get_name", lambda: None)()
+            if name:
+                names.append(name)
+        return names
 
     def get_app_details(self, app_id: str) -> FlatpakAppDetails:
         """Return installed and update metadata for one application."""
@@ -218,7 +272,7 @@ class FlatpakManager:
                 continue
 
             for ref in refs:
-                if not self._ref_kind_is_app(ref) or self._normalize_app_id(self._ref_name(ref)) != requested:
+                if not self._ref_kind_is_supported(ref) or self._normalize_app_id(self._ref_name(ref)) != requested:
                     continue
 
                 metadata = self._load_ref_metadata(ref)
@@ -229,7 +283,7 @@ class FlatpakManager:
                     branch=self._safe_call(ref, "get_branch", ""),
                     arch=self._safe_call(ref, "get_arch", ""),
                     origin=self._safe_call(ref, "get_origin", ""),
-                    runtime=metadata.get("runtime", "n/a"),
+                    runtime=metadata.get("runtime", metadata.get("name", "n/a")),
                     sdk=metadata.get("sdk", "n/a"),
                     base=metadata.get("base", "n/a"),
                     installed_commit=self._safe_call(ref, "get_commit", "n/a"),
@@ -324,7 +378,7 @@ class FlatpakManager:
             raise FlatpakAPIError(f"Unable to query updates for {app_id}: {exc.message}") from exc
 
         for ref in refs:
-            if not self._ref_kind_is_app(ref):
+            if not self._ref_kind_is_supported(ref):
                 continue
             current = self._normalize_app_id(self._ref_name(ref))
             if current == requested:
@@ -357,11 +411,14 @@ class FlatpakManager:
         except GLib.Error as exc:
             raise FlatpakAPIError(f"Unable to queue update for {ref_string}: {exc.message}") from exc
 
-    def _to_app_list(self, refs) -> List[FlatpakAppInfo]:
+    def _to_app_list(self, refs, include_runtimes: bool = False) -> List[FlatpakAppInfo]:
         apps: List[FlatpakAppInfo] = []
         seen = set()
         for ref in refs:
-            if not self._ref_kind_is_app(ref):
+            if include_runtimes:
+                if not self._ref_kind_is_supported(ref):
+                    continue
+            elif not self._ref_kind_is_app(ref):
                 continue
             app_id = self._ref_name(ref)
             key = self._ref_key(ref, app_id)
@@ -381,15 +438,32 @@ class FlatpakManager:
 
     @staticmethod
     def _ref_key(ref, app_id: str) -> str:
-        return f"{app_id}|{FlatpakManager._safe_call(ref, 'get_branch', '')}|{FlatpakManager._safe_call(ref, 'get_arch', '')}"
+        return (
+            f"{FlatpakManager._ref_kind(ref)}|{app_id}|"
+            f"{FlatpakManager._safe_call(ref, 'get_branch', '')}|"
+            f"{FlatpakManager._safe_call(ref, 'get_arch', '')}"
+        )
+
+    @staticmethod
+    def _ref_kind(ref):
+        if hasattr(ref, "get_kind"):
+            return ref.get_kind()
+        if hasattr(ref, "kind"):
+            return ref.kind
+        return None
 
     @staticmethod
     def _ref_kind_is_app(ref) -> bool:
-        if hasattr(ref, "get_kind"):
-            return ref.get_kind() == Flatpak.RefKind.APP
-        if hasattr(ref, "kind"):
-            return ref.kind == Flatpak.RefKind.APP
-        return False
+        return FlatpakManager._ref_kind(ref) == Flatpak.RefKind.APP
+
+    @staticmethod
+    def _ref_kind_is_runtime(ref) -> bool:
+        runtime_kind = getattr(Flatpak.RefKind, "RUNTIME", None)
+        return runtime_kind is not None and FlatpakManager._ref_kind(ref) == runtime_kind
+
+    @staticmethod
+    def _ref_kind_is_supported(ref) -> bool:
+        return FlatpakManager._ref_kind_is_app(ref) or FlatpakManager._ref_kind_is_runtime(ref)
 
     @staticmethod
     def _ref_name(ref) -> str:
@@ -437,7 +511,10 @@ class FlatpakManager:
         except (UnicodeDecodeError, configparser.Error):
             logger.warning("Ignoring malformed Flatpak metadata")
             return {}
-        return {key.lower(): value for key, value in parser.items("Application")} if parser.has_section("Application") else {}
+        section = "Application" if parser.has_section("Application") else "Runtime" if parser.has_section("Runtime") else None
+        if section is None:
+            return {}
+        return {key.lower(): value for key, value in parser.items(section)}
 
     @staticmethod
     def _available_commit(installation, ref) -> str:
@@ -481,7 +558,8 @@ class FlatpakManager:
         arch = FlatpakManager._safe_call(ref, "get_arch", "")
         branch = FlatpakManager._safe_call(ref, "get_branch", "")
         if name and arch and branch:
-            return f"app/{name}/{arch}/{branch}"
+            prefix = "runtime" if FlatpakManager._ref_kind_is_runtime(ref) else "app"
+            return f"{prefix}/{name}/{arch}/{branch}"
         return str(name or ref)
 
     @staticmethod

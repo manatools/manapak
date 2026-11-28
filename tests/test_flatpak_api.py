@@ -19,14 +19,15 @@ from manapak.flatpak_api import FlatpakAPIError, FlatpakManager
 
 
 class FakeRef:
-    def __init__(self, app_id: str):
+    def __init__(self, app_id: str, kind: int = 0):
         self._app_id = app_id
+        self._kind = kind
 
     def get_name(self):
         return self._app_id
 
     def get_kind(self):
-        return 0
+        return self._kind
 
     def get_branch(self):
         return "stable"
@@ -71,8 +72,10 @@ class FakeTransaction:
 
 
 class FakeInstallation:
-    def __init__(self, refs):
+    def __init__(self, refs, remotes=None):
         self.refs = refs
+        self.remotes = remotes or []
+        self.refreshed = []
 
     def list_installed_refs_for_update(self, cancellable=None):
         return self.refs
@@ -83,13 +86,20 @@ class FakeInstallation:
     def fetch_remote_ref_sync(self, origin, kind, name, arch, branch, cancellable=None):
         return SimpleNamespace(get_commit=lambda: "available-commit")
 
+    def list_remotes(self):
+        return [SimpleNamespace(get_name=lambda remote=remote: remote) for remote in self.remotes]
+
+    def update_remote_sync(self, remote_name, cancellable=None):
+        self.refreshed.append(remote_name)
+        return True
+
 
 def test_update_app_uses_formatted_ref(monkeypatch):
     fake_ref = FakeRef("com.example.App")
     fake_tx = FakeTransaction()
 
     class FakeFlatpak:
-        RefKind = SimpleNamespace(APP=0)
+        RefKind = SimpleNamespace(APP=0, RUNTIME=1)
 
         class Installation:
             @staticmethod
@@ -119,29 +129,10 @@ def test_update_app_uses_formatted_ref(monkeypatch):
 
 def test_get_installed_apps_filters_non_apps(monkeypatch):
     app_ref = FakeRef("org.example.App")
-    class FakeRuntimeRef:
-        def get_name(self):
-            return "org.example.Platform"
-
-        def get_kind(self):
-            return 1
-
-        def get_branch(self):
-            return "stable"
-
-        def get_arch(self):
-            return "x86_64"
-
-        def get_origin(self):
-            return "flathub"
-
-        def get_appdata_version(self):
-            return "1.2.3"
-
-    runtime_ref = FakeRuntimeRef()
+    runtime_ref = FakeRef("org.example.Platform", kind=1)
 
     class FakeFlatpak:
-        RefKind = SimpleNamespace(APP=0)
+        RefKind = SimpleNamespace(APP=0, RUNTIME=1)
 
         class Installation:
             @staticmethod
@@ -165,7 +156,7 @@ def test_update_app_reports_progress_callback(monkeypatch):
     fake_tx = FakeTransaction()
 
     class FakeFlatpak:
-        RefKind = SimpleNamespace(APP=0)
+        RefKind = SimpleNamespace(APP=0, RUNTIME=1)
 
         class Installation:
             @staticmethod
@@ -201,6 +192,8 @@ def test_get_installation_rewraps_polkit_permission_error(monkeypatch):
             super().__init__(message)
 
     class FakeFlatpak:
+        RefKind = SimpleNamespace(APP=0, RUNTIME=1)
+
         class Installation:
             @staticmethod
             def new_system(cancellable=None):
@@ -222,7 +215,7 @@ def test_get_app_details_includes_runtime_and_available_commit(monkeypatch):
     installation = FakeInstallation([fake_ref])
 
     class FakeFlatpak:
-        RefKind = SimpleNamespace(APP=0)
+        RefKind = SimpleNamespace(APP=0, RUNTIME=1)
 
         class Installation:
             pass
@@ -286,3 +279,92 @@ def test_cancel_operations_cancels_active_cancellables():
     manager.cancel_operations()
 
     assert cancelled == [True]
+
+
+def test_check_updates_includes_runtime_refs(monkeypatch):
+    app_ref = FakeRef("org.example.App", kind=0)
+    runtime_ref = FakeRef("org.gnome.Platform.Locale", kind=1)
+    installation = FakeInstallation([app_ref, runtime_ref], remotes=["flathub"])
+
+    class FakeFlatpak:
+        RefKind = SimpleNamespace(APP=0, RUNTIME=1)
+
+        class Installation:
+            @staticmethod
+            def new_user(cancellable=None):
+                return installation
+
+            @staticmethod
+            def new_system(cancellable=None):
+                return installation
+
+    import manapak.flatpak_api as flatpak_api
+
+    monkeypatch.setattr(flatpak_api, "Flatpak", FakeFlatpak)
+    monkeypatch.setattr(flatpak_api, "GLib", SimpleNamespace(Error=RuntimeError))
+    monkeypatch.setattr(flatpak_api, "_FLATPAK_IMPORT_ERROR", None)
+
+    manager = FlatpakManager(use_system_installation=False)
+    updates = manager.check_updates()
+
+    assert [item.app_id for item in updates] == ["org.example.App", "org.gnome.Platform.Locale"]
+
+
+def test_check_updates_reads_system_installation_updates(monkeypatch):
+    user_installation = FakeInstallation([])
+    system_installation = FakeInstallation([FakeRef("org.freedesktop.Platform", kind=1)], remotes=["flathub"])
+
+    class FakeFlatpak:
+        RefKind = SimpleNamespace(APP=0, RUNTIME=1)
+
+        class Installation:
+            @staticmethod
+            def new_user(cancellable=None):
+                return user_installation
+
+            @staticmethod
+            def new_system(cancellable=None):
+                return system_installation
+
+    import manapak.flatpak_api as flatpak_api
+
+    monkeypatch.setattr(flatpak_api, "Flatpak", FakeFlatpak)
+    monkeypatch.setattr(flatpak_api, "GLib", SimpleNamespace(Error=RuntimeError))
+    monkeypatch.setattr(flatpak_api, "_FLATPAK_IMPORT_ERROR", None)
+
+    manager = FlatpakManager(use_system_installation=False)
+    updates = manager.check_updates()
+
+    assert [item.app_id for item in updates] == ["org.freedesktop.Platform"]
+
+
+def test_check_updates_refreshes_remote_metadata_when_cache_is_stale(monkeypatch):
+    installation = FakeInstallation([FakeRef("org.example.App")], remotes=["flathub"])
+
+    class FakeFlatpak:
+        RefKind = SimpleNamespace(APP=0, RUNTIME=1)
+
+        class Installation:
+            @staticmethod
+            def new_user(cancellable=None):
+                return installation
+
+            @staticmethod
+            def new_system(cancellable=None):
+                return installation
+
+    import manapak.flatpak_api as flatpak_api
+
+    times = iter([100.0, 101.0, 200.0])
+    monkeypatch.setattr(flatpak_api, "time", SimpleNamespace(monotonic=lambda: next(times)))
+    monkeypatch.setattr(flatpak_api, "Flatpak", FakeFlatpak)
+    monkeypatch.setattr(flatpak_api, "GLib", SimpleNamespace(Error=RuntimeError))
+    monkeypatch.setattr(flatpak_api, "_FLATPAK_IMPORT_ERROR", None)
+
+    manager = FlatpakManager(use_system_installation=False)
+    manager._remote_refresh_interval = 30.0
+    manager.check_updates()
+    manager.check_updates()
+    manager.check_updates()
+
+    assert installation.refreshed == ["flathub", "flathub", "flathub", "flathub"]

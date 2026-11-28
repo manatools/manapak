@@ -5,10 +5,13 @@
 ## Features
 
 - list installed Flatpak applications
-- check which installed apps have updates available
+- check which installed apps and runtimes have updates available
 - update selected apps with `Flatpak.Transaction`
 - operate in the background without blocking the main UI thread
 - show Flatpak errors through dialogs if any
+
+When checking for updates, `manapak` refreshes remote metadata in the background
+before querying updates. This can add a short delay but avoids stale results.
 
 ## Security and privilege model
 
