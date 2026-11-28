@@ -202,7 +202,7 @@ class FlatpakManager:
                 raise FlatpakAPIError(f"Unable to list installed refs: {exc.message}") from exc
             scope = self._installation_scopes.get(id(installation), "unknown")
             refs.extend((ref, scope) for ref in installed_refs)
-        return self._to_app_list(refs)
+        return self._to_app_list(refs, include_runtimes=True)
 
     def check_updates(self) -> List[FlatpakAppInfo]:
         self.refresh_remote_metadata_if_stale()

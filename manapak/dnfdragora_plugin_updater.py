@@ -30,13 +30,13 @@ def get_update_count() -> int:
 
     This function is called by dnfdragora-updater from a worker thread to determine
     if there are pending Flatpak updates. It queries the system Flatpak installation
-    and returns the count of applications with available updates.
+    and returns the count of application and runtime refs with available updates.
 
     Thread-safe: This function performs no UI access and no polling loops. It may
     perform I/O (querying Flatpak) and is safe to call from background threads.
 
     Returns:
-        int: Number of Flatpak applications with available updates (0 or more).
+        int: Number of Flatpak application and runtime updates available (0 or more).
              Returns 0 on any error (Flatpak not available, GLib errors, permission issues, etc.)
     """
     try:

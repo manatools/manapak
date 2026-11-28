@@ -131,7 +131,7 @@ def test_update_app_uses_formatted_ref(monkeypatch):
     assert fake_tx.calls == [("app/com.example.App/x86_64/stable", None, None)]
 
 
-def test_get_installed_apps_filters_non_apps(monkeypatch):
+def test_get_installed_apps_includes_apps_and_runtimes(monkeypatch):
     app_ref = FakeRef("org.example.App")
     runtime_ref = FakeRef("org.example.Platform", kind=1)
 
@@ -152,7 +152,7 @@ def test_get_installed_apps_filters_non_apps(monkeypatch):
     manager = FlatpakManager(use_system_installation=False)
     apps = manager.get_installed_apps()
 
-    assert [app.app_id for app in apps] == ["org.example.App"]
+    assert [app.app_id for app in apps] == ["org.example.App", "org.example.Platform"]
 
 
 def test_update_app_reports_progress_callback(monkeypatch):
